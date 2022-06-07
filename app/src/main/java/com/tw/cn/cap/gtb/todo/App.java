@@ -2,7 +2,6 @@ package com.tw.cn.cap.gtb.todo;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 
 public class App {
@@ -14,9 +13,9 @@ public class App {
     public List<String> run() {
 
         try {
-            return Files.readAllLines(Path.of("C:/Users/huan/.todo/tasks"));
+            return Files.readAllLines(Constants.TASKS_FILE_PATH);
         } catch (IOException e) {
-           throw  new ToDOCannotReadFileException();
+            throw new ToDOCannotReadFileException();
         }
     }
 }
