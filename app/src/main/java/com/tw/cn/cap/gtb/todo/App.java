@@ -12,13 +12,29 @@ public class App {
     }
 
     public List<String> run() {
-        List<String> lines = readTaskLines();
+        List<Task> tasks = loadTasks();
+
         List<String> result = new ArrayList<>();
         result.add("# To be done");
-        for (int i = 0; i < lines.size(); i++) {
-            result.add(String.format("%d %s", i + 1, lines.get(i)));
+        for (Task task : tasks) {
+            result.add(task.format());
         }
+
+
         return result;
+    }
+
+    private List<Task> loadTasks() {
+        List<String> lines = readTaskLines();
+        List<Task> tasks = new ArrayList<>();
+        for (int i = 0; i < lines.size(); i++) {
+            int id = i + 1;
+            String line = lines.get(i);
+            String name = line;
+            Task task = new Task(id, name);
+            tasks.add(task);
+        }
+        return tasks;
     }
 
     private List<String> readTaskLines() {
