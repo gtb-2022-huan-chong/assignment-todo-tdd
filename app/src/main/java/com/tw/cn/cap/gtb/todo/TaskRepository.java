@@ -12,11 +12,7 @@ public class TaskRepository {
         List<String> lines = readTaskLines();
         List<Task> tasks = new ArrayList<>();
         for (int i = 0; i < lines.size(); i++) {
-            int id = i + 1;
-            String line = lines.get(i);
-            String name = line.split(" ", 2)[1];
-            Task task = new Task(id, name);
-            tasks.add(task);
+            tasks.add(TaskFactory.createTask(i + 1, lines.get(i)));
         }
         return tasks;
     }
