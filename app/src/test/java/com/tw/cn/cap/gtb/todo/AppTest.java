@@ -12,7 +12,11 @@ class AppTest {
         Assertions.assertEquals(List.of(
                 "# To be done",
                 "1 Task 01",
-                "2 Task 02"), result);
+                "2 Task 02",
+                "# Completed",
+                "3 Task 03",
+                "4 Task 04"
+        ), result);
     }
 
 }
