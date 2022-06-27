@@ -6,6 +6,7 @@ import java.util.List;
 public class Section {
     public static final String COMPLETED = "# Completed";
     public static final String TO_BE_DONE = "# To be done";
+    public static final String EMPTY = "Empty";
     private final String title;
     private final boolean flag;
 
@@ -38,6 +39,10 @@ public class Section {
                 .filter(this::isTypeMatched)
                 .map(Task::format)
                 .forEach(result::add);
+
+        if (result.size() == 1) {
+            result.add(EMPTY);
+        }
         return result;
     }
 
