@@ -21,7 +21,7 @@ public class TaskRepository {
         try {
             return Files.readAllLines(Constants.TASKS_FILE_PATH);
         } catch (IOException e) {
-            throw new ToDOCannotReadFileException();
+            throw new ToDoCannotReadFileException();
         }
     }
 }
