@@ -2,6 +2,7 @@ package com.tw.cn.cap.gtb.todo;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,5 +24,16 @@ public class TaskRepository {
         } catch (IOException e) {
             throw new ToDoCannotReadFileException();
         }
+    }
+
+    List<String> create(final Task task) {
+        final var taskName = task.getName();
+        try (var bw = Files.newBufferedWriter(Constants.TASKS_FILE_PATH, StandardOpenOption.APPEND)) {
+            bw.write("+ " + taskName);
+            bw.newLine();
+        } catch (IOException e) {
+            throw new ToDoCannotReadFileException();
+        }
+        return List.of();
     }
 }
