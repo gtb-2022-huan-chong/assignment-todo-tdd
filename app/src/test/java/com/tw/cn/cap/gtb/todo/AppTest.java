@@ -10,9 +10,12 @@ import java.nio.file.Files;
 import java.util.List;
 
 class AppTest {
+    private App app;
+
     @BeforeEach
     void setUp() {
         writeDataFile(List.of("+ Task 01", "+ Task 02", "x Task 03", "x Task 04"));
+        app = new App();
     }
 
 
@@ -24,7 +27,11 @@ class AppTest {
 
             @Test
             void should_list_existing_tasks() {
-                List<String> result = new App().run();
+                //given
+
+                //when
+                List<String> result = app.run();
+                //then
                 Assertions.assertEquals(List.of(
                         "# To be done",
                         "1 Task 01",
@@ -46,9 +53,11 @@ class AppTest {
             @Test
             void should_add_task_with_single_word_as_name() {
 
-                new App().run("add", "foobar");
-
-                List<String> result = new App().run();
+                //given
+                //when
+                app.run("add", "foobar");
+                //then
+                final var result = app.run();
                 Assertions.assertEquals(List.of(
                         "# To be done",
                         "1 Task 01",
