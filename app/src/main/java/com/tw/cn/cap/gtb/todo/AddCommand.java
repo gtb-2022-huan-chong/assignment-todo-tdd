@@ -14,8 +14,7 @@ public class AddCommand {
     }
 
     List<String> execute() {
-        final var taskName = Stream.of(args)
-                .skip(1).collect(Collectors.joining(" "));
+        final var taskName = String.join(" ", args);
         return taskRepository.create(new Task(0, taskName, false));
     }
 

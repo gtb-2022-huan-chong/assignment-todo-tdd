@@ -19,7 +19,7 @@ public class AddCommandTest {
 
     @Test
     void should_compose_task_name_using_multiple_args() {
-        final var command = new AddCommand(new String[]{"add", "fizz", "buzz"}, taskRepository);
+        final var command = new AddCommand(new String[]{"fizz", "buzz"}, taskRepository);
 
         command.execute();
 
@@ -28,7 +28,7 @@ public class AddCommandTest {
 
     @Test
     void should_use_empty_name_no_args_provided() {
-        final var command = new AddCommand(new String[]{"add"}, taskRepository);
+        final var command = new AddCommand(new String[]{}, taskRepository);
 
         command.execute();
 
