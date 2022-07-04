@@ -9,11 +9,13 @@ import java.util.List;
 public class TaskRepository {
 
 
+    private final TaskMarshaller taskMarshaller = new TaskMarshaller();
+
     List<Task> loadTasks() {
         List<String> lines = readTaskLines();
         List<Task> tasks = new ArrayList<>();
         for (int i = 0; i < lines.size(); i++) {
-            tasks.add(TaskMarshaller.unmarshal(i + 1, lines.get(i)));
+            tasks.add(taskMarshaller.unmarshal(i + 1, lines.get(i)));
         }
         return tasks;
     }
@@ -28,7 +30,7 @@ public class TaskRepository {
 
     public void create(final Task task) {
         try (var bw = Files.newBufferedWriter(Constants.TASKS_FILE_PATH, StandardOpenOption.APPEND)) {
-            final String line = TaskMarshaller.marshal(task);
+            final String line = taskMarshaller.marshal(task);
             bw.write(line);
             bw.newLine();
         } catch (IOException e) {
