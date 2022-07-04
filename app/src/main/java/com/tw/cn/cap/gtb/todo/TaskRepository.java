@@ -27,12 +27,13 @@ public class TaskRepository {
     }
 
     public void create(final Task task) {
-        final var taskName = task.getName();
         try (var bw = Files.newBufferedWriter(Constants.TASKS_FILE_PATH, StandardOpenOption.APPEND)) {
-            bw.write("+ " + taskName);
+            final String line = TaskFactory.marshal(task);
+            bw.write(line);
             bw.newLine();
         } catch (IOException e) {
             throw new TodoException();
         }
     }
+
 }
