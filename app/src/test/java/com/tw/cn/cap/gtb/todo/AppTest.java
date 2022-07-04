@@ -14,7 +14,7 @@ class AppTest {
 
     @BeforeEach
     void setUp() {
-        writeDataFile(List.of("+ Task 01", "+ Task 02", "x Task 03", "x Task 04"));
+        writeDataFile(List.of("+ + Task 01", "+ + Task 02", "x + Task 03", "x + Task 04"));
         app = new App();
     }
 
@@ -71,6 +71,28 @@ class AppTest {
         }
     }
 
+    @Nested
+    class RemoveTaskTest {
+
+        @Nested
+        class WhenSingleIdProvidedTest {
+
+            @Test
+            void should_remove_single_task() {
+                app.run("remove", "1");
+
+                Assertions.assertEquals(List.of(
+                        "# To be done",
+                        "2 Task 02",
+                        "# Completed",
+                        "3 Task 03",
+                        "4 Task 04"
+                ), app.run());
+
+            }
+
+        }
+    }
 
     private void writeDataFile(final List<String> lines) {
         try (var bw = Files.newBufferedWriter(Constants.TASKS_FILE_PATH)) {

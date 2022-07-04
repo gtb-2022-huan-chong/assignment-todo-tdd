@@ -23,7 +23,7 @@ public class AddCommandTest {
 
         command.execute();
 
-        verify(taskRepository).create(new Task(0,"fizz buzz",false));
+        verify(taskRepository).create(new Task(0,"fizz buzz",false, false));
     }
 
     @Test
@@ -32,6 +32,6 @@ public class AddCommandTest {
 
         command.execute();
 
-        verify(taskRepository).create(new Task(0,"",false));
+        verify(taskRepository).create(new Task(0,"",false, false));
     }
 }
