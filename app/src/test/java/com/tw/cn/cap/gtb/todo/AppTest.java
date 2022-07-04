@@ -5,8 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
 
 class AppTest {
@@ -14,7 +12,7 @@ class AppTest {
 
     @BeforeEach
     void setUp() {
-        writeDataFile(List.of(
+        TestUtil.writeDataFile(List.of(
                 "+ + Task 01",
                 "+ + Task 02",
                 "x + Task 03",
@@ -119,15 +117,4 @@ class AppTest {
         }
     }
 
-    private void writeDataFile(final List<String> lines) {
-        try (var bw = Files.newBufferedWriter(Constants.TASKS_FILE_PATH)) {
-            for (final String line : lines) {
-                bw.write(line);
-                bw.newLine();
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
