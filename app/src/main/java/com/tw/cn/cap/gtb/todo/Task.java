@@ -54,4 +54,8 @@ public class Task {
     public int hashCode() {
         return Objects.hash(id, name, isCompleted);
     }
+
+    public boolean isDeleted() {
+        return this.deleted;
+    }
 }

@@ -7,13 +7,15 @@ public class TaskMarshaller {
     String marshal(Task task) {
 
         final var completedSign = task.isCompleted() ? "x" : "+";
-        return completedSign + " " + task.getName();
+        final var deletedSign = task.isDeleted() ? "x" : "+";
+        return completedSign + " " + deletedSign + " " + task.getName();
     }
 
     Task unmarshal(int id, String line) {
-        String[] fields = line.split(" ", 2);
-        final var name = fields[1];
+        String[] fields = line.split(" ", 3);
         boolean isCompleted = fields[0].equals("x");
-        return new Task(id, name, isCompleted, false);
+        final var isDeleted = fields[1].equals("x");
+        final var name = fields[2];
+        return new Task(id, name, isCompleted, isDeleted);
     }
 }
