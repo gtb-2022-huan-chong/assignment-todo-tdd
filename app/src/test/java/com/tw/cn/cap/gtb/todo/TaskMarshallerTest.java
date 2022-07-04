@@ -27,6 +27,12 @@ class TaskMarshallerTest {
         assertEquals(line, taskMarshaller.marshal(task));
     }
 
+    @ParameterizedTest
+    @MethodSource("lines_and_tasks")
+    void should_unmarshal_from_text(String line, Task task) {
+        assertEquals(task, taskMarshaller.unmarshal(1, line));
+    }
+
     public static Stream<Arguments> lines_and_tasks() {
         return Stream.of(
                 Arguments.of("+ foo", new Task(1, "foo", false)),
