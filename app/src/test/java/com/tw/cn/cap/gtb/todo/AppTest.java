@@ -32,7 +32,7 @@ class AppTest {
                 //given
 
                 //when
-                List<String> result = app.run();
+                List<String> result = app.run("list");
                 //then
                 Assertions.assertEquals(List.of(
                         "# To be done",
@@ -59,7 +59,7 @@ class AppTest {
                 //when
                 app.run("add", "foobar");
                 //then
-                final var result = app.run();
+                final var result = app.run("list");
                 Assertions.assertEquals(List.of(
                         "# To be done",
                         "1 Task 01",
@@ -86,7 +86,7 @@ class AppTest {
                 //when
                 app.run("remove", "1");
                 //then
-                final var result = app.run();
+                final var result = app.run("list");
                 Assertions.assertEquals(List.of(
                         "# To be done",
                         "2 Task 02",
@@ -96,6 +96,7 @@ class AppTest {
                 ), result);
             }
         }
+
         @Nested
         class WhenRemoveMultipleTaskTest {
 
@@ -104,9 +105,9 @@ class AppTest {
 
                 //given
                 //when
-                app.run("remove", "1","3");
+                app.run("remove", "1", "3");
                 //then
-                final var result = app.run();
+                final var result = app.run("list");
                 Assertions.assertEquals(List.of(
                         "# To be done",
                         "2 Task 02",

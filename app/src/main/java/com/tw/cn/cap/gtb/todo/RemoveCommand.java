@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class RemoveCommand {
+public class RemoveCommand extends Command{
     private final String[] restArgs;
-    private final TaskRepository taskRepository;
 
     public RemoveCommand(final String[] restArgs, final TaskRepository taskRepository) {
+        super(taskRepository);
         this.restArgs = restArgs;
-        this.taskRepository = taskRepository;
     }
 
 
+    @Override
     public List<String> execute() {
 
         final var ids = Stream.of(restArgs)

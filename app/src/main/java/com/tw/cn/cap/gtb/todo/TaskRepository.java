@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class TaskRepository {
 
-
     private final TaskMarshaller taskMarshaller = new TaskMarshaller();
 
     List<Task> all() {
