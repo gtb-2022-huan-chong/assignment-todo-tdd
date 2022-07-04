@@ -1,6 +1,7 @@
 package com.tw.cn.cap.gtb.todo;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class RemoveCommand {
     private final String[] restArgs;
@@ -13,7 +14,9 @@ public class RemoveCommand {
 
 
     public List<String> execute() {
-        this.taskRepository.delete(Integer.parseInt(restArgs[0]));
+        Stream.of(restArgs)
+                .map(Integer::valueOf)
+                .forEach(this.taskRepository::delete);
         return List.of();
     }
 }
