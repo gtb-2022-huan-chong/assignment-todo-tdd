@@ -14,6 +14,10 @@ public class App {
             final var restArgs = Arrays.copyOfRange(args, 1, args.length);
             return new AddCommand(restArgs, new TaskRepository()).execute();
         }
+        if (args.length > 0 && args[0].equals("remove")) {
+            final var restArgs = Arrays.copyOfRange(args, 1, args.length);
+            return new AddCommand(restArgs, new TaskRepository()).execute();
+        }
         return new ListCommand().run();
 
     }
