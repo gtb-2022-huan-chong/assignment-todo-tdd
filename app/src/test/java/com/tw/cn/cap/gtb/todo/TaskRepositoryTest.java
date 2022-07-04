@@ -22,7 +22,7 @@ class TaskRepositoryTest {
         final var taskRepository = new TaskRepository();
         taskRepository.delete(1);
         taskRepository.delete(3);
-        final var result = taskRepository.loadTasks();
+        final var result = taskRepository.all();
         assertEquals(List.of(
                 new Task(2, "Task 02", false, false),
                 new Task(4, "Task 04", true, false)
