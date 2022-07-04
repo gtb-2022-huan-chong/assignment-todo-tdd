@@ -69,30 +69,6 @@ class AppTest {
                 ), result);
             }
         }
-
-        @Nested
-        class WhenMultipleWordProvidedTest {
-
-            @Test
-            void should_add_task_with_multiple_word_as_name() {
-
-                //given
-                //when
-                app.run("add", "fizz","buzz");
-                //then
-                final var result = app.run();
-                Assertions.assertEquals(List.of(
-                        "# To be done",
-                        "1 Task 01",
-                        "2 Task 02",
-                        "5 fizz buzz",
-                        "# Completed",
-                        "3 Task 03",
-                        "4 Task 04"
-                ), result);
-            }
-        }
-
     }
 
 
