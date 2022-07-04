@@ -14,6 +14,6 @@ public class TaskMarshaller {
         String[] fields = line.split(" ", 2);
         final var name = fields[1];
         boolean isCompleted = fields[0].equals("x");
-        return new Task(id, name, isCompleted);
+        return new Task(id, name, isCompleted, false);
     }
 }

@@ -6,12 +6,14 @@ public class Task {
     private final int id;
     private final String name;
     private final boolean isCompleted;
+    private final boolean deleted;
 
 
-    public Task(int id, String name, boolean isCompleted) {
+    public Task(int id, String name, boolean isCompleted, boolean isDeleted) {
         this.id = id;
         this.name = name;
         this.isCompleted = isCompleted;
+        this.deleted = isDeleted;
     }
 
     public int getId() {
@@ -32,7 +34,12 @@ public class Task {
 
     @Override
     public String toString() {
-        return id + " " + isCompleted + " " + name;
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", isCompleted=" + isCompleted +
+                ", deleted=" + deleted +
+                '}';
     }
 
     @Override
@@ -40,7 +47,7 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         final Task task = (Task) o;
-        return id == task.id && isCompleted == task.isCompleted && Objects.equals(name, task.name);
+        return id == task.id && isCompleted == task.isCompleted && deleted == task.deleted && Objects.equals(name, task.name);
     }
 
     @Override
