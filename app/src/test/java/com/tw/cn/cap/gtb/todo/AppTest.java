@@ -75,6 +75,30 @@ class AppTest {
         }
     }
 
+    @Nested
+    class RemoveCommandTest {
+
+        @Nested
+        class WhenRemoveSingleTaskTest {
+
+            @Test
+            void should_remove_one_task() {
+
+                //given
+                //when
+                app.run("remove", "1");
+                //then
+                final var result = app.run();
+                Assertions.assertEquals(List.of(
+                        "# To be done",
+                        "2 Task 02",
+                        "# Completed",
+                        "3 Task 03",
+                        "4 Task 04"
+                ), result);
+            }
+        }
+    }
 
     private void writeDataFile(final List<String> lines) {
         try (var bw = Files.newBufferedWriter(Constants.TASKS_FILE_PATH)) {
